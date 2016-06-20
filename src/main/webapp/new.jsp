@@ -7,6 +7,7 @@
 </head>
 <body>
 <button id="username">GET提交按钮</button>
+<button id="getpost">POST提交按钮</button>
 <script src="static/js/ajax.js"></script>
 
 <script>
@@ -18,6 +19,14 @@
 
             ajax.getText("/testajax",function(result){
                 alert("hello"+result)
+            })
+        }
+
+
+        document.querySelector("#getpost").onclick = function () {
+
+            ajax.getPost("/testajax",{username:"赵朝旭",age:"26"},function(result){
+                alert("post"+result);
             })
         }
 

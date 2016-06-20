@@ -11,8 +11,9 @@
     <title>post</title>
 </head>
 <body>
+
 <button id="btn">post提交</button>
-<form action="" enctype="application/x-www-form-urlencoded"></form>
+
 <script>
 
     function creatxmlhttp() {

@@ -21,22 +21,43 @@ public class testAjax extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //解决输入get缓存的问题
-        resp.setContentType("text/html;charset=UTF-8");
+        resp.setContentType("text/html;charset=utf-8");
+
+        resp.addHeader("pragma", "no-cache");
+        resp.addHeader("cache-control", "nocache");
+        resp.addHeader("expires", "0");
 
         String username = req.getParameter("username");
         logger.debug("用户名为{}：", username);
+        username = new String(username.getBytes("ISO8859-1"),"UTF-8");
 
 
         PrintWriter pw = resp.getWriter();
 
-        if ("zcx".equals(username)) {
-            pw.write("no");
+        if ("赵朝旭".equals(username)) {
+            pw.print("no");
         } else {
-            pw.write("yes");
+            pw.print("yes");
         }
 
         pw.flush();
         pw.close();
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+
+        String username = req.getParameter("username");
+        String age = req.getParameter("age");
+
+        logger.debug("{}-{}",username,age);
+
+        PrintWriter pw = resp.getWriter();
+
+        pw.print("PHP");
+        pw.flush();
+        pw.close();
     }
 }
